@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battery Level</title>
+</head>
+<body>
+  <div id="batteryLevel"></div>
+
+  <script>
+    // JavaScript to get battery level and update HTML
+    navigator.getBattery().then(function(battery) {
+      // Function to update battery level in HTML
+      function updateBatteryLevel() {
+        var batteryLevel = battery.level * 100;
+        document.getElementById('batteryLevel').innerText = "Battery level: " + batteryLevel.toFixed(2) + "%";
+      }
+
+      // Initial update
+      updateBatteryLevel();
+
+      // Listen for changes in battery level
+      battery.addEventListener('levelchange', updateBatteryLevel);
+    });
+  </script>
+</body>
+</html>
